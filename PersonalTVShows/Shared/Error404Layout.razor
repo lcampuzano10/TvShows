@@ -1,0 +1,13 @@
+﻿@inherits LayoutComponentBase
+
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpContextAccessor
+
+@Body
+
+@code {
+    protected override void OnInitialized()
+    {
+        httpContextAccessor.HttpContext.Response.StatusCode = 404;
+    }
+}

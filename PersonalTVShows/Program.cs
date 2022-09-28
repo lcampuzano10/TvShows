@@ -13,8 +13,14 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 //var config = builder.Configuration.GetSection("TvShows").Get<List<int>>();
 
 builder.Services.AddMudServices();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.ConfigureHttpClient();
 builder.Services.ConfigureAPiServices();
 
 await builder.Build().RunAsync();
+
+
+/*
+ * Fixing Path Problem: https://blog.elmah.io/how-to-fix-blazor-wasm-base-path-problems/
+ */

@@ -1,4 +1,7 @@
 ﻿@inherits LayoutComponentBase
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+@inject IWebAssemblyHostEnvironment HostEnvironment
+
 <MudThemeProvider @ref="@_mudThemeProvider" @bind-IsDarkMode="@_isDarkMode" Theme="_theme" />
 <MudDialogProvider />
 <MudSnackbarProvider />
@@ -15,10 +18,20 @@
         <MudDrawerHeader Style="background-color:#2196f3ff;">
             <MudText Typo="Typo.h6" Style="color:white;">My Tv Shows</MudText>
         </MudDrawerHeader>
-        <MudNavMenu>
-            <MudNavLink Match="NavLinkMatch.All" Href="/Tvshows">Home</MudNavLink>
-            <MudNavLink Match="NavLinkMatch.All" Href="/Tvshows/tvshowList">TvShows</MudNavLink>
-        </MudNavMenu>
+        @if (Env == "Production")
+        {
+            <MudNavMenu>
+                <MudNavLink Match="NavLinkMatch.All" Href="/TvShows">Home</MudNavLink>
+                <MudNavLink Match="NavLinkMatch.All" Href="/TvShows/tvshowList">TvShows</MudNavLink>
+            </MudNavMenu>
+        }
+        else if (Env == "Development")
+        {
+            <MudNavMenu>
+                <MudNavLink Match="NavLinkMatch.All" Href="/">Home</MudNavLink>
+                <MudNavLink Match="NavLinkMatch.All" Href="/tvshowList">TvShows</MudNavLink>
+            </MudNavMenu>
+        }        
     </MudDrawer>
     <MudMainContent Class="pt-16 px-4 pb-16">
         <MudContainer Class="mt-6" Fixed="true">
@@ -41,9 +54,16 @@
     private bool _isDarkMode;
     private MudThemeProvider _mudThemeProvider;
 
+    private String Env { get; set; }
+
     void ToggleDrawer()
     {
         open = !open;
+    }
+
+    protected override void OnInitialized()
+    {
+        Env = HostEnvironment.Environment;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

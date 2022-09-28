@@ -1,10 +1,23 @@
 ﻿@page "/"
 @page "/Tvshows"
 
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+@inject IWebAssemblyHostEnvironment HostEnvironment
+
 
 <PageTitle>My Personal Tv Shows </PageTitle>
 
-<MudText Typo="Typo.h3">My Personal <MudLink Href="/Tvshows/tvshowList" Typo="Typo.h3" Color="Color.Inherit">Tv Shows</MudLink></MudText>
+<MudText Typo="Typo.h3">My Personal 
+    @if (Env == "Production")
+    {
+        <MudLink Href="tvshowList" Typo="Typo.h3" Color="Color.Inherit">Tv Shows</MudLink>
+    }
+    else if (Env == "Development")
+    {
+        <MudLink Href="/TvShows/tvshowList" Typo="Typo.h3" Color="Color.Inherit">Tv Shows</MudLink>
+    }      
+    
+</MudText>
 
 <MudText Typo="Typo.body1">This simple Blazor Wasm website is implemented using
     <MudLink Href="https://mudblazor.com/" Target="_blank" Color="Color.Inherit" Underline="Underline.Always">MudBlazor Framework</MudLink>.
@@ -12,3 +25,13 @@
 
 <MudText Typo="Typo.body1"> The intention of this website is to keep track of the shows I liked, to know the previous and the next episodes 
 so I can watch it right away.</MudText>
+
+
+@code{
+    private String Env { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Env = HostEnvironment.Environment;
+    }
+}

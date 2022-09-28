@@ -1,0 +1,58 @@
+﻿@inherits LayoutComponentBase
+<MudThemeProvider @ref="@_mudThemeProvider" @bind-IsDarkMode="@_isDarkMode" Theme="_theme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+
+<MudLayout>
+    <MudAppBar Color="Color.Info" Elevation="1">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
+        <MudSpacer />
+        <MudSwitch @bind-Checked="@_isDarkMode" Color="Color.Primary" Class="ma-4" T="bool" />
+        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="#" Target="_blank" />
+    </MudAppBar>
+    <MudDrawer @bind-Open="@open" Elevation="2">
+        <MudDrawerHeader Style="background-color:#2196f3ff;">
+            <MudText Typo="Typo.h6" Style="color:white;">My Tv Shows</MudText>
+        </MudDrawerHeader>
+        <MudNavMenu>
+            <MudNavLink Match="NavLinkMatch.All" Href="/">Home</MudNavLink>
+            <MudNavLink Match="NavLinkMatch.All" Href="/tvshows">TvShows</MudNavLink>
+        </MudNavMenu>
+    </MudDrawer>
+    <MudMainContent Class="pt-16 px-4 pb-16">
+        <MudContainer Class="mt-6" Fixed="true">
+            @*<MudAlert Severity="Severity.Success" Class="mt-16">Text inside MudContainer</MudAlert>*@
+            @Body
+        </MudContainer>
+    </MudMainContent>
+    <MudAppBar Bottom="true" Fixed="true" Dense Color="Color.Info" Elevation="1">
+        Copyright 2022
+        <MudSpacer />
+        Created By Luis Campuzano 
+        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="#" Target="_blank" />
+    </MudAppBar>
+</MudLayout>
+
+
+@code {
+    bool open = false;
+    private MudTheme _theme = new();
+    private bool _isDarkMode;
+    private MudThemeProvider _mudThemeProvider;
+
+    void ToggleDrawer()
+    {
+        open = !open;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _isDarkMode = await _mudThemeProvider.GetSystemPreference();
+            StateHasChanged();
+        }
+    }
+
+}

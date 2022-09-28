@@ -1,0 +1,35 @@
+﻿@*@page "/"*@
+@page "/tvshows"
+@using PersonalTVShows.Models.Dto
+@using PersonalTVShows.Models.TvMazeModels
+
+<PageTitle>Tv Shows</PageTitle>
+
+<MudText Typo="Typo.h4">Tv Shows</MudText>
+
+
+@if (ListShowsDto == null)
+{
+	<MudText Typo="Typo.h3"><em>Loading...</em></MudText>
+	
+}
+else
+{
+	<MudDataGrid Items="@ListShowsDto" Hover="true" Dense="true">
+		<Columns>
+			<Column T="TvShowDto" Field="PictureSmallUrl" Title="Picture">
+				<CellTemplate>
+					<MudImage Src="@context.Item.PictureSmallUrl" Width="50" Height="50" Alt="small image of show" 
+					Fluid="true" Class="rounded-lg ma-4" />
+				</CellTemplate>
+			</Column>
+			<Column T="TvShowDto" Field="ShowName" Title="Name" />
+			<Column T="TvShowDto" Field="LastEpisodeDate" Title="Last Episode Date" />
+			<Column T="TvShowDto" Field="LastEpisode" Title="Last Episode" />
+			<Column T="TvShowDto" Field="LastEpisodeName" Title="Last Episode Name" />
+			<Column T="TvShowDto" Field="NextEpisodeDate" Title="Next Episode Date" />
+			<Column T="TvShowDto" Field="NextEpisode" Title="Next Episode" />
+			<Column T="TvShowDto" Field="NextEpisodeName" Title="Next Episode Name" />
+		</Columns>
+	</MudDataGrid>
+}

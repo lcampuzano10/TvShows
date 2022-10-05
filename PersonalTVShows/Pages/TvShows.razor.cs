@@ -15,7 +15,6 @@ namespace PersonalTVShows.Pages
         [Inject]
         private IConfiguration Configuration { get; set; }
 
-        //private List<TvShowEmbedded> ListShowsFromApi { get; set; }
         private List<TvShowDto> ListShowsDto { get; set; }
 
         private List<int> ListOfShowsIds;
@@ -46,7 +45,6 @@ namespace PersonalTVShows.Pages
 
             var loadshows = LoadShows();
 
-            //ListShowsFromApi = new();
             ListShowsDto = new();
 
             try
@@ -60,7 +58,6 @@ namespace PersonalTVShows.Pages
                     string nextEpisodeDate = string.Empty;
                     string dayOfWeek = response.schedule.days[0];
                     string airTime = Convert.ToDateTime(response.schedule.time).ToShortTimeString();
-                    //TimeOnly airTime = TimeOnly.FromDateTime(Convert.ToDateTime(response.schedule.time));
 
                     if (response._embedded.nextepisode is not null)
                     {
@@ -82,7 +79,6 @@ namespace PersonalTVShows.Pages
                         WeekDayAndTime = $"{dayOfWeek} - {airTime}"
                     };
 
-                    //ListShowsFromApi.Add(response);
                     ListShowsDto.Add(tvShowDto);
                 }
             }
@@ -90,7 +86,6 @@ namespace PersonalTVShows.Pages
             {
                 Console.WriteLine(ex.Message);
             }
-            //ListShowsDto = ListShowsFromApi.Adapt<List<TvShowDto>>();
         }
     }
 }

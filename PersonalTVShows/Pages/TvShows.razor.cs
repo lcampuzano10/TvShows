@@ -43,7 +43,7 @@ namespace PersonalTVShows.Pages
             //var response = await _tvShowApiService.GetShowById(loadshows.ShowId);
             //var response = await _tvShowApiService.GetShowPreviousNextEpisode(loadshow.ShowId);
 
-            var loadshows = LoadShows();
+            //var loadshows = LoadShows();
 
             ListShowsDto = new();
 

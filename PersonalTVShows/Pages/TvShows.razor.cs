@@ -58,6 +58,9 @@ namespace PersonalTVShows.Pages
                     string nextEpisodeName = string.Empty;
                     string nextEpisode = string.Empty;
                     string nextEpisodeDate = string.Empty;
+                    string dayOfWeek = response.schedule.days[0];
+                    string airTime = Convert.ToDateTime(response.schedule.time).ToShortTimeString();
+                    //TimeOnly airTime = TimeOnly.FromDateTime(Convert.ToDateTime(response.schedule.time));
 
                     if (response._embedded.nextepisode is not null)
                     {
@@ -75,7 +78,8 @@ namespace PersonalTVShows.Pages
                         NextEpisode = nextEpisode,
                         LastEpisodeDate = response._embedded.previousepisode.airdate,
                         NextEpisodeDate = nextEpisodeDate,
-                        PictureSmallUrl = response.image.medium
+                        PictureSmallUrl = response.image.medium,
+                        WeekDayAndTime = $"{dayOfWeek} - {airTime}"
                     };
 
                     //ListShowsFromApi.Add(response);

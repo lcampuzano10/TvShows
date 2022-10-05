@@ -9,6 +9,7 @@ namespace PersonalTVShows.Models.Dto
 	public class TvShowDto
 	{
 		public string ShowName { get; set; }
+		public string WeekDayAndTime { get; set; }
 		public string LastEpisode { get; set; }
 		public string LastEpisodeName { get; set; }
 		public string NextEpisode { get; set; }

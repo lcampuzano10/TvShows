@@ -57,7 +57,7 @@ namespace PersonalTVShows.Pages
                     string nextEpisode = string.Empty;
                     string nextEpisodeDate = string.Empty;
                     string dayOfWeek = response.schedule.days[0];
-                    string airTime = Convert.ToDateTime(response.schedule.time).ToShortTimeString();
+                    string airTime = string.Empty;
 
                     if (response._embedded.nextepisode is not null)
                     {
@@ -65,6 +65,9 @@ namespace PersonalTVShows.Pages
                         nextEpisodeName = response._embedded.nextepisode.name;
                         nextEpisodeDate = response._embedded.nextepisode.airdate;
                     }
+
+                    if (!string.IsNullOrWhiteSpace(response.schedule.time))
+                        airTime = Convert.ToDateTime(response.schedule.time).ToShortTimeString();
 
                     TvShowDto tvShowDto = new TvShowDto
                     {
@@ -84,7 +87,7 @@ namespace PersonalTVShows.Pages
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine($"{ex.Message}");
             }
         }
     }

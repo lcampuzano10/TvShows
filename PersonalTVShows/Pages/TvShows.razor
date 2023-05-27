@@ -15,22 +15,24 @@
 }
 else
 {
-    <MudDataGrid Items="@ListShowsDto" Hover="true" Dense="true">
-        <Columns>
-            <Column T="TvShowDto" Field="PictureSmallUrl" Title="Picture">
-                <CellTemplate>
-                    <MudImage Src="@context.Item.PictureSmallUrl" Width="50" Height="50" Alt="small image of show"
-                          Fluid="true" Class="rounded-lg ma-4" />
-                </CellTemplate>
-            </Column>
-            <Column T="TvShowDto" Field="ShowName" Title="Name" />
-            <Column T="TvShowDto" Field="WeekDayAndTime" Title="Day And Time" />
-            <Column T="TvShowDto" Field="LastEpisodeDate" Title="Last Episode Date" />
-            <Column T="TvShowDto" Field="LastEpisode" Title="Last Episode" />
-            <Column T="TvShowDto" Field="LastEpisodeName" Title="Last Episode Name" />
-            <Column T="TvShowDto" Field="NextEpisodeDate" Title="Next Episode Date" />
-            <Column T="TvShowDto" Field="NextEpisode" Title="Next Episode" />
-            <Column T="TvShowDto" Field="NextEpisodeName" Title="Next Episode Name" />
-        </Columns>
-    </MudDataGrid>
+    <div style="width:100%;">
+        <MudDataGrid Items="@ListShowsDto" Hover="true" Dense="true">
+            <Columns>
+                <Column T="TvShowDto" Field="PictureSmallUrl" Title="Picture">
+                    <CellTemplate>
+                        <MudImage Src="@context.Item.PictureSmallUrl" Width="50" Height="50" Alt="small image of show"
+                                  Fluid="true" Class="rounded-lg ma-4" />
+                    </CellTemplate>
+                </Column>
+                <Column T="TvShowDto" Field="ShowName" Title="Name" />
+                <Column T="TvShowDto" Field="WeekDayAndTime" Title="Day And Time" />
+                <Column T="TvShowDto" Field="LastEpisodeDate" Title="Last Episode Date" />
+                <Column T="TvShowDto" Field="LastEpisode" Title="Last Episode" />
+                <Column T="TvShowDto" Field="LastEpisodeName" Title="Last Episode Name" />
+                <Column T="TvShowDto" Field="NextEpisodeDate" Title="Next Episode Date" />
+                <Column T="TvShowDto" Field="NextEpisode" Title="Next Episode" />
+                <Column T="TvShowDto" Field="NextEpisodeName" Title="Next Episode Name" />
+            </Columns>
+        </MudDataGrid>
+    </div>
 }

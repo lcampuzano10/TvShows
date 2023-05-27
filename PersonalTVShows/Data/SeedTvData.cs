@@ -21,6 +21,9 @@ namespace PersonalTVShows.Data
 			new Show { ShowId = 28152, ShowName = "9-1-1"},
 			new Show { ShowId = 21532, ShowName = "S.W.A.T."},
 			new Show { ShowId = 69, ShowName = "The Blacklist"},
+			new Show { ShowId = 32158, ShowName = "FBI"},
+			new Show { ShowId = 53659, ShowName = "FBI: International"},
+			new Show { ShowId = 46562, ShowName = "The Last of Us"},
 		};
 	}
 }

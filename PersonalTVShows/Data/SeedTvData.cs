@@ -13,7 +13,7 @@ namespace PersonalTVShows.Data
 		public static List<Show> ListOfShows => new List<Show>
 		{
 			new Show { ShowId = 60, ShowName = "NCIS"},
-			new Show { ShowId = 72, ShowName = "NCIS: LA"},
+			//new Show { ShowId = 72, ShowName = "NCIS: LA"},
 			new Show { ShowId = 53629, ShowName = "NCIS: Hawaii"},
 			new Show { ShowId = 56, ShowName = "Chicago PD"},
 			new Show { ShowId = 59, ShowName = "Chicago Fire"},

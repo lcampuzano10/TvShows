@@ -18,20 +18,20 @@ else
     <div style="width:100%;">
         <MudDataGrid Items="@ListShowsDto" Hover="true" Dense="true">
             <Columns>
-                <Column T="TvShowDto" Field="PictureSmallUrl" Title="Picture">
+                <PropertyColumn Property="x => x.PictureSmallUrl" Title="Picture">
                     <CellTemplate>
                         <MudImage Src="@context.Item.PictureSmallUrl" Width="50" Height="50" Alt="small image of show"
                                   Fluid="true" Class="rounded-lg ma-4" />
                     </CellTemplate>
-                </Column>
-                <Column T="TvShowDto" Field="ShowName" Title="Name" />
-                <Column T="TvShowDto" Field="WeekDayAndTime" Title="Day And Time" />
-                <Column T="TvShowDto" Field="LastEpisodeDate" Title="Last Episode Date" />
-                <Column T="TvShowDto" Field="LastEpisode" Title="Last Episode" />
-                <Column T="TvShowDto" Field="LastEpisodeName" Title="Last Episode Name" />
-                <Column T="TvShowDto" Field="NextEpisodeDate" Title="Next Episode Date" />
-                <Column T="TvShowDto" Field="NextEpisode" Title="Next Episode" />
-                <Column T="TvShowDto" Field="NextEpisodeName" Title="Next Episode Name" />
+                </PropertyColumn>
+                <PropertyColumn  Property="x => x.ShowName" Title="Name" />
+                <PropertyColumn  Property="x => x.WeekDayAndTime" Title="Day And Time" />
+                <PropertyColumn  Property="x => x.LastEpisodeDate" Title="Last Episode Date" />
+                <PropertyColumn  Property="x => x.LastEpisode" Title="Last Episode" />
+                <PropertyColumn  Property="x => x.LastEpisodeName" Title="Last Episode Name" />
+                <PropertyColumn  Property="x => x.NextEpisodeDate" Title="Next Episode Date" />
+                <PropertyColumn  Property="x => x.NextEpisode" Title="Next Episode" />
+                <PropertyColumn  Property="x => x.NextEpisodeName" Title="Next Episode Name" />
             </Columns>
         </MudDataGrid>
     </div>

@@ -9,21 +9,42 @@
 
 <MudLayout>
     <MudAppBar Color="Color.Info" Elevation="1">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
-        <MudIconButton Icon="@Icons.Material.Filled.Home" Color="Color.Inherit" Link="@BaseLink" />
+        <MudIconButton Icon="@Icons.Material.Filled.Menu"
+                       Color="Color.Inherit" Edge="Edge.Start"
+                       OnClick="@ToggleDrawer" />
+        <MudIconButton Icon="@Icons.Material.Filled.Home"
+                       Color="Color.Inherit"
+                       Href="@BaseLink" />
+        <MudNavMenu>
+            <MudNavLink Match="NavLinkMatch.All"
+                        Href="@($"{BaseLink}tvshowList")">
+                TvShows
+            </MudNavLink>
+        </MudNavMenu>
         <MudSpacer />
-        <MudSwitch @bind-Checked="@_isDarkMode" Color="Color.Primary" Class="ma-4" T="bool" />
-        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/lcampuzano10/TvShows" Target="_blank" />
+        <MudSwitch @bind-Checked="@_isDarkMode"
+                   Color="Color.Primary"
+                   Class="ma-4"/>
+        <MudIconButton Icon="@Icons.Custom.Brands.GitHub"
+                       Color="Color.Inherit"
+                       Href="https://github.com/lcampuzano10/TvShows"
+                       Target="_blank" />
     </MudAppBar>
     <MudDrawer @bind-Open="@open" Elevation="2">
         <MudDrawerHeader Style="background-color:#2196f3ff;">
-            <MudText Typo="Typo.h6" Style="color:white;">My Tv Shows</MudText>
+            <MudText Typo="Typo.h6" Style="color:white;">
+                My Tv Shows
+            </MudText>
         </MudDrawerHeader>
-
-
         <MudNavMenu>
-            <MudNavLink Match="NavLinkMatch.All" Href="@BaseLink">Home</MudNavLink>
-            <MudNavLink Match="NavLinkMatch.All" Href="@($"{BaseLink}tvshowList")">TvShows</MudNavLink>
+            <MudNavLink Match="NavLinkMatch.All"
+                        Href="@BaseLink">
+                Home
+            </MudNavLink>
+            <MudNavLink Match="NavLinkMatch.All"
+                        Href="@($"{BaseLink}tvshowList")">
+                TvShows
+            </MudNavLink>
         </MudNavMenu>
     </MudDrawer>
     <MudMainContent Class="pt-16 px-4 pb-16">
@@ -31,11 +52,17 @@
             @Body
         </MudContainer>
     </MudMainContent>
-    <MudAppBar Bottom="true" Fixed="true" Dense Color="Color.Info" Elevation="1">
+    <MudAppBar Bottom="true"
+               Fixed="true"
+               Dense="true"
+               Color="Color.Info"
+               Elevation="1">
         Copyright 2022
         <MudSpacer />
-        Created By Luis Campuzano 
-        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/lcampuzano10" Target="_blank" />
+        Created By Luis Campuzano
+        <MudIconButton Icon="@Icons.Custom.Brands.GitHub"
+                       Color="Color.Inherit"
+                       Href="https://github.com/lcampuzano10" Target="_blank" />
     </MudAppBar>
 </MudLayout>
 
@@ -43,7 +70,7 @@
 @code {
     bool open = false;
     private MudTheme _theme = new();
-    private bool _isDarkMode;
+    private bool _isDarkMode { get; set; }
     private MudThemeProvider _mudThemeProvider;
 
     private String Env { get; set; }

@@ -18,6 +18,7 @@ else
     <div style="width:100%;">
         <MudDataGrid Items="@ListShowsDto" Hover="true" Dense="true">
             <Columns>
+                <PropertyColumn Property="x => x.Id" Title="Id" />
                 <PropertyColumn Property="x => x.PictureSmallUrl" Title="Picture">
                     <CellTemplate>
                         <MudImage Src="@context.Item.PictureSmallUrl" Width="50" Height="50" Alt="small image of show"
@@ -25,6 +26,7 @@ else
                     </CellTemplate>
                 </PropertyColumn>
                 <PropertyColumn  Property="x => x.ShowName" Title="Name" />
+                <PropertyColumn  Property="x => x.NetworkChannelName" Title="Channel" />
                 <PropertyColumn  Property="x => x.WeekDayAndTime" Title="Day And Time" />
                 <PropertyColumn  Property="x => x.LastEpisodeDate" Title="Last Episode Date" />
                 <PropertyColumn  Property="x => x.LastEpisode" Title="Last Episode" />

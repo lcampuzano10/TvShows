@@ -38,6 +38,7 @@ namespace PersonalTVShows.Pages
 
         private async Task LoadApiShowInfo()
         {
+            int listCount = 1;
             //! Single Load Show
             //var loadshow = LoadShows().FirstOrDefault();
             //var response = await _tvShowApiService.GetShowById(loadshows.ShowId);
@@ -49,8 +50,11 @@ namespace PersonalTVShows.Pages
 
             try
             {
-                foreach (int show in ListOfShowsIds)
+                foreach (var (show, index) in ListOfShowsIds.Select((value, i) => (value, i)))
                 {
+                    if(index is not 0 && index % 20 == 0)
+                        await Task.Delay(TimeSpan.FromSeconds(15));
+
                     TvShowEmbedded response = await _tvShowApiService.GetShowPreviousNextEpisode(show);
 
                     string nextEpisodeName = string.Empty;
@@ -58,6 +62,7 @@ namespace PersonalTVShows.Pages
                     string nextEpisodeDate = string.Empty;
                     string dayOfWeek = response.schedule.days[0];
                     string airTime = string.Empty;
+                    string networkChannel = string.Empty;
 
                     if (response._embedded.nextepisode is not null)
                     {
@@ -69,8 +74,12 @@ namespace PersonalTVShows.Pages
                     if (!string.IsNullOrWhiteSpace(response.schedule.time))
                         airTime = Convert.ToDateTime(response.schedule.time).ToShortTimeString();
 
+                    if(response.network is not null && !string.IsNullOrEmpty(response.network.name))
+                        networkChannel = response.network.name;
+
                     TvShowDto tvShowDto = new TvShowDto
                     {
+                        Id = listCount,
                         ShowName = response.name,
                         LastEpisodeName = response._embedded.previousepisode.name,
                         LastEpisode = $"{response._embedded.previousepisode.season} x {response._embedded.previousepisode.number}",
@@ -79,10 +88,13 @@ namespace PersonalTVShows.Pages
                         LastEpisodeDate = response._embedded.previousepisode.airdate,
                         NextEpisodeDate = nextEpisodeDate,
                         PictureSmallUrl = response.image.medium,
-                        WeekDayAndTime = $"{dayOfWeek} - {airTime}"
+                        WeekDayAndTime = $"{dayOfWeek} - {airTime}",
+                        NetworkChannelName = networkChannel,
                     };
 
                     ListShowsDto.Add(tvShowDto);
+
+                    listCount++;
                 }
             }
             catch (Exception ex)

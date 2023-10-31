@@ -76,6 +76,11 @@ namespace PersonalTVShows.Pages
 
                     if(response.network is not null && !string.IsNullOrEmpty(response.network.name))
                         networkChannel = response.network.name;
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(response.webChannel.name))
+                            networkChannel = response.webChannel.name;
+                    }
 
                     TvShowDto tvShowDto = new TvShowDto
                     {

@@ -24,6 +24,11 @@ namespace PersonalTVShows.Data
 			new Show { ShowId = 32158, ShowName = "FBI"},
 			new Show { ShowId = 53659, ShowName = "FBI: International"},
 			new Show { ShowId = 46562, ShowName = "The Last of Us"},
+			new Show { ShowId = 58846, ShowName = "Dexter: New Blood"},
+			new Show { ShowId = 45975, ShowName = "The Cleaning Lady"},
+			new Show { ShowId = 45840, ShowName = "Mayor of Kingstown"},
+			new Show { ShowId = 44391, ShowName = "Walker"},
+			new Show { ShowId = 60285, ShowName = "Rabbit Hole"},
 		};
 	}
 }

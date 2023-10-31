@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PersonalTVShows.Models.TvMazeModels
 {
-	public class TvShow
+    public class TvShow
 	{
 		public Links? _links { get; set; }
 		public int? averageRuntime { get; set; }
@@ -29,7 +29,7 @@ namespace PersonalTVShows.Models.TvMazeModels
 		public string? type { get; set; }
 		public int? updated { get; set; }
 		public string? url { get; set; }
-		public object webChannel { get; set; }
+		public WebChannel? webChannel { get; set; }
 		public int? weight { get; set; }
 	}
 }

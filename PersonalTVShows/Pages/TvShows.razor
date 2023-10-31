@@ -9,9 +9,16 @@
 <MudText Typo="Typo.h4">Tv Shows</MudText>
 
 
-@if (ListShowsDto == null)
+@if (IsBusy)
 {
-    <MudText Typo="Typo.h3"><em>Loading...</em></MudText>
+    <MudPaper Class="pa-16 ma-2" Elevation="0">
+        <div class="container">
+            <div class="child">
+                <MudProgressCircular Color="Color.Primary" Size="Size.Large" Indeterminate="true" />
+            </div>
+        </div>
+    </MudPaper>
+    @* <MudText Typo="Typo.h3"><em>Loading...</em></MudText> *@
 }
 else
 {
@@ -25,15 +32,15 @@ else
                                   Fluid="true" Class="rounded-lg ma-4" />
                     </CellTemplate>
                 </PropertyColumn>
-                <PropertyColumn  Property="x => x.ShowName" Title="Name" />
-                <PropertyColumn  Property="x => x.NetworkChannelName" Title="Channel" />
-                <PropertyColumn  Property="x => x.WeekDayAndTime" Title="Day And Time" />
-                <PropertyColumn  Property="x => x.LastEpisodeDate" Title="Last Episode Date" />
-                <PropertyColumn  Property="x => x.LastEpisode" Title="Last Episode" />
-                <PropertyColumn  Property="x => x.LastEpisodeName" Title="Last Episode Name" />
-                <PropertyColumn  Property="x => x.NextEpisodeDate" Title="Next Episode Date" />
-                <PropertyColumn  Property="x => x.NextEpisode" Title="Next Episode" />
-                <PropertyColumn  Property="x => x.NextEpisodeName" Title="Next Episode Name" />
+                <PropertyColumn Property="x => x.ShowName" Title="Name" />
+                <PropertyColumn Property="x => x.NetworkChannelName" Title="Channel" />
+                <PropertyColumn Property="x => x.WeekDayAndTime" Title="Day And Time" />
+                <PropertyColumn Property="x => x.LastEpisodeDate" Title="Last Episode Date" />
+                <PropertyColumn Property="x => x.LastEpisode" Title="Last Episode" />
+                <PropertyColumn Property="x => x.LastEpisodeName" Title="Last Episode Name" />
+                <PropertyColumn Property="x => x.NextEpisodeDate" Title="Next Episode Date" />
+                <PropertyColumn Property="x => x.NextEpisode" Title="Next Episode" />
+                <PropertyColumn Property="x => x.NextEpisodeName" Title="Next Episode Name" />
             </Columns>
         </MudDataGrid>
     </div>

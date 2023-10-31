@@ -15,15 +15,22 @@ namespace PersonalTVShows.Pages
         [Inject]
         private IConfiguration Configuration { get; set; }
 
-        private List<TvShowDto> ListShowsDto { get; set; }
+        private List<TvShowDto> ListShowsDto { get; set; } = new();
 
-        private List<int> ListOfShowsIds;
+        private List<int> ListOfShowsIds { get; set; } = new();
+
+        public bool IsBusy { get; set; } = false;
 
         protected override async Task OnInitializedAsync()
         {
+            IsBusy = true;
             LoadIdsOfShows();
 
             await LoadApiShowInfo();
+
+            IsBusy = false;
+
+            StateHasChanged();
         }
 
         private List<Show> LoadShows()
@@ -45,8 +52,6 @@ namespace PersonalTVShows.Pages
             //var response = await _tvShowApiService.GetShowPreviousNextEpisode(loadshow.ShowId);
 
             //var loadshows = LoadShows();
-
-            ListShowsDto = new();
 
             try
             {

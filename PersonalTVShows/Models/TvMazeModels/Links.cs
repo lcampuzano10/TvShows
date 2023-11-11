@@ -1,9 +1,8 @@
-﻿namespace PersonalTVShows.Models.TvMazeModels
+﻿namespace PersonalTVShows.Models.TvMazeModels;
+
+public class Links
 {
-	public class Links
-	{
-		public Nextepisode? nextepisode { get; set; }
-		public Previousepisode? previousepisode { get; set; }
-		public Self? self { get; set; }
-	}
+    public Nextepisode? nextepisode { get; set; }
+    public Previousepisode? previousepisode { get; set; }
+    public Self? self { get; set; }
 }

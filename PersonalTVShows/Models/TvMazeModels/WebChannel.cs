@@ -4,7 +4,7 @@
 	{
         public int Id { get; set; }
         public string name { get; set; }
-        public string country { get; set; }
+        public Country country { get; set; }
         public string officialSite { get; set; }
     }
 }

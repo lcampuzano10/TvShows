@@ -17,7 +17,12 @@ namespace PersonalTVShows.Services
             _clientFactory = clientFactory;
             _configuration = configuration;
             _httpClient = _clientFactory.CreateClient("TvMazeApi");
-            _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            _options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                WriteIndented = true,
+                DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
+            };
         }
 
         #endregion Fields

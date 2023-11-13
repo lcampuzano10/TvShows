@@ -46,6 +46,11 @@ namespace PersonalTVShows.Pages
         private async Task LoadApiShowInfo()
         {
             int listCount = 1;
+            string nextEpisodeName = string.Empty;
+            string nextEpisode = string.Empty;
+            string nextEpisodeDate = string.Empty;
+            string airTime = string.Empty;
+            string networkChannel = string.Empty;
             //! Single Load Show
             //var loadshow = LoadShows().FirstOrDefault();
             //var response = await _tvShowApiService.GetShowById(loadshows.ShowId);
@@ -57,17 +62,12 @@ namespace PersonalTVShows.Pages
             {
                 foreach (var (show, index) in ListOfShowsIds.Select((value, i) => (value, i)))
                 {
-                    if(index is not 0 && index % 20 == 0)
+                    if (index is not 0 && index % 20 == 0)
                         await Task.Delay(TimeSpan.FromSeconds(15));
 
                     TvShowEmbedded response = await _tvShowApiService.GetShowPreviousNextEpisode(show);
 
-                    string nextEpisodeName = string.Empty;
-                    string nextEpisode = string.Empty;
-                    string nextEpisodeDate = string.Empty;
                     string dayOfWeek = response.schedule.days[0];
-                    string airTime = string.Empty;
-                    string networkChannel = string.Empty;
 
                     if (response._embedded.nextepisode is not null)
                     {
@@ -79,7 +79,7 @@ namespace PersonalTVShows.Pages
                     if (!string.IsNullOrWhiteSpace(response.schedule.time))
                         airTime = Convert.ToDateTime(response.schedule.time).ToShortTimeString();
 
-                    if(response.network is not null && !string.IsNullOrEmpty(response.network.name))
+                    if (response.network is not null && !string.IsNullOrEmpty(response.network.name))
                         networkChannel = response.network.name;
                     else
                     {

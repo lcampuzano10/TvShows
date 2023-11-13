@@ -1,6 +1,9 @@
 ﻿@page "/pdfviewer"
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 @using PersonalTVShows.Helpers;
 @using PersonalTVShows.Models.Documents;
+
+@inject IWebAssemblyHostEnvironment HostEnvironment
 
 @if (PdfList.Count > 0)
 {
@@ -35,11 +38,25 @@ else
     private PdfDocument Pdf { get; set; } = new();
     private PdfList PdfList { get; set; } = new();
     public string PdfPath { get; set; } = string.Empty;
+    private String Env { get; set; }
+    private String BaseLink { get; set; }
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        PdfList = PdfHelper.CreatePdfList();
+
+        Env = HostEnvironment.Environment;
+
+        if (Env == "Production")
+        {
+            BaseLink = "/TvShows/";
+        }
+        else if (Env == "Development")
+        {
+            BaseLink = "/";
+        }
+
+        PdfList = PdfHelper.CreatePdfList(BaseLink);
     }
 
 }

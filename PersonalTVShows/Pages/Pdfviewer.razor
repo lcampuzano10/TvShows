@@ -1,0 +1,45 @@
+﻿@page "/pdfviewer"
+@using PersonalTVShows.Helpers;
+@using PersonalTVShows.Models.Documents;
+
+@if (PdfList.Count > 0)
+{
+    <MudSelect T="string"
+    @bind-Value="PdfPath"
+               Label="Pdfs to read"
+               Placeholder="Please Select Item"
+               Variant="Variant.Filled"
+               AnchorOrigin="Origin.BottomCenter">
+        @foreach (PdfDocument item in PdfList)
+        {
+            <MudSelectItem Value="@(item.PdfPath)">@item.PdfName</MudSelectItem>
+        }
+    </MudSelect>
+
+    @if (!string.IsNullOrEmpty(PdfPath))
+    {
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item"
+                    src="@($"{PdfPath}#view=FitH ")"
+                    style="width:100%; height:70vh"
+                    allowfullscreen></iframe>
+        </div>
+    }
+}
+else
+{
+    <MudText Class="h1">No list available to show</MudText>
+}
+
+@code {
+    private PdfDocument Pdf { get; set; } = new();
+    private PdfList PdfList { get; set; } = new();
+    public string PdfPath { get; set; } = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        PdfList = PdfHelper.CreatePdfList();
+    }
+
+}
